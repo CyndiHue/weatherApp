@@ -27,7 +27,7 @@
         <h3 class="card-header">Search for a City:</h3>
         <form id="city-form" class="card-body">
           <!-- <label class="form-label" for="username"></label> -->
-          <input name="cityName" id="cityName" type="text" autofocus="true" class="form-input" />
+          <input name="cityInput" id="cityInput" type="text" placeholder= "Enter City Name"autofocus="true" class="form-input" />
           <button type="searchBtn" class="btn">Search</button>
         </form>
       </div>
@@ -46,10 +46,13 @@
         <div class="card">
             <div class="col-12 col-md-8">
               <h2 class="subtitle">Current Search: <span id="city-searched"></span></h2>
-              <div id="weather-container" class="list-group"></div>
-            </div>
-            <div class="card-body">
-              This is some text within a card body.
+              <div id="weather-container" class="weather-container"></div>
+              <h5 class="card-title">Date</h5>
+              <i></i>
+              <p id="city">City:</p>
+              <p id="temperature">Temp:</p>
+              <p id="wind-speed">Wind:</p>
+              <p id="humidity">Humidity:</p>
             </div>
           </div>
           <div class="card" style="width: 18rem;">
