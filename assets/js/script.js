@@ -41,33 +41,38 @@ form.addEventListener("submit", function (event){
         .then(response => response.json())
         .then(weatherData =>{
             console.log(weatherData)
-    if (city === '') {
+            let tempFound = weatherData.list[0].main.temp;
+            temp.textContent = "Temperature: "+ tempFound + " Fahrenheit";
+            
+            let windFound = weatherData.list[0].wind.speed
+            wind.textContent = "Wind Speed: " + windFound + " MPH";
+            
+            let humFound = weatherData.list[0].main.humidity
+            humidity.textContent =  "Humidity: " +humFound + " %";
+            
+            let iconEl = weatherData.list[0].weather.icon;
+            icon.value = iconEl
+            
+            console.log()
+
+    if (city === '') {    
         return  getWeather(city);
        
-    }
-})
+    }    
 
+    localStorage.setItem("Weather", JSON.stringify(weatherData));
+    createBtn(city)
 
+})    
 
-            // let tempFound = weatherData.list[0].main.temp;
-            // temp.textContent = "Temperature: "+ tempFound + " Fahrenheit";
-            
-            // let windFound = weatherData.list[0].wind.speed
-            // wind.textContent = "Wind Speed: " + windFound + " MPH";
-          
-            // let humFound = weatherData.list[0].main.humidity
-            // humidity.textContent =  "Humidity: " +humFound + " %";
-            
-            // let iconEl = weatherData.list[0].weather.icon;
-            // icon.value = iconEl
-
-            // let  = weatherData.list[8].main.temp
-            // document.getElementById("nextDayT").textContent = "Temp: " ++ "F";
-
-            // console.log()
-            
-
-
+let storedCities = document.getElementById("storedCities")
+function createBtn(cityName){
+    let newCityBtn = document.createElement("button");
+    newCityBtn.addEventListener("click", function (){
+        getWeather(cityName);
+    })
+    storedCities.append(newCityBtn)
+}
 })
 
 
