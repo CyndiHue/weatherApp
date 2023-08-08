@@ -31,7 +31,6 @@ form.addEventListener("submit", function (event){
             return fetch(latLonQuery)
             //  units=imperial for weather in Fahrenheit
             // according to documentation - cnt is supposed to be for day but is showing every 3 hours in console
-            
         })
     
         .then(response => response.json())
@@ -51,7 +50,7 @@ form.addEventListener("submit", function (event){
             icon.value = iconEl
             
     if (city === '') {    
-        return  getWeather(city);
+        return;
     }    
 
     localStorage.setItem("Weather", JSON.stringify(weatherData));
@@ -60,12 +59,14 @@ form.addEventListener("submit", function (event){
 })    
 
 let storedCities = document.getElementById("storedCities")
-function createBtn(cityName){
+function createBtn(){
     let newCityBtn = document.createElement("button");
-    newCityBtn.addEventListener("click", function (){
-        getWeather(cityName);
-    })
     storedCities.append(newCityBtn)
+    newCityBtn.textContent = cityInputEl.value.trim();
+    newCityBtn.addEventListener("click", function (event){
+        event.target
+    })
 }
 })
 
+createBtn();
