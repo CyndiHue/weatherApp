@@ -1,5 +1,4 @@
 let apiKey = "ae43fce93221a7479e25011f753d1c95";
-let cityBtnEl = document.querySelector("#city-buttons");
 let cityName = document.querySelector("#cityName");
 let weatherContainerEl = document.querySelector("weather-container");
 let citySearched = document.querySelector("#city-searched");
@@ -41,6 +40,7 @@ form.addEventListener("submit", function (event){
         .then(response => response.json())
         .then(weatherData =>{
             console.log(weatherData)
+
             let tempFound = weatherData.list[0].main.temp;
             temp.textContent = "Temperature: "+ tempFound + " Fahrenheit";
             
@@ -53,11 +53,8 @@ form.addEventListener("submit", function (event){
             let iconEl = weatherData.list[0].weather.icon;
             icon.value = iconEl
             
-            console.log()
-
     if (city === '') {    
         return  getWeather(city);
-       
     }    
 
     localStorage.setItem("Weather", JSON.stringify(weatherData));
@@ -76,6 +73,17 @@ function createBtn(cityName){
 })
 
 
-
-
+// function nextDay(){
+//     let nextTempFound = weatherData.list[8].main.temp;
+//     document.getElementById("nextDayT").textContent = "Temp: "+ nextTempFound + " Fahrenheit";
+    
+//     let windFound = weatherData.list[8].wind.speed
+//     wind.textContent = "Wind Speed: " + windFound + " MPH";
+    
+//     let humFound = weatherData.list[8].main.humidity
+//     humidity.textContent =  "Humidity: " +humFound + " %";
+    
+//     let iconEl = weatherData.list[8].weather.icon;
+//     icon.value = iconEl
+// }
 
