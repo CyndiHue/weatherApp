@@ -1,17 +1,11 @@
 let apiKey = "ae43fce93221a7479e25011f753d1c95";
 let cityName = document.querySelector("#cityName");
-let weatherContainerEl = document.querySelector("weather-container");
-let citySearched = document.querySelector("#city-searched");
-let currentCityEl = document.getElementById("city");
 let temp = document.getElementById("temperature");
 let wind = document.getElementById("wind-speed");
 let humidity = document.getElementById("humidity");
 let icon = document.getElementById("icon");
 
-
-let searchCity = document.getElementById("searchCity");
 let cityInputEl = document.getElementById("cityInput");
-let cityFormEl = document.getElementById("city-form");
 
 let form = document.getElementById("city-form");
 
@@ -71,19 +65,4 @@ function createBtn(cityName){
     storedCities.append(newCityBtn)
 }
 })
-
-
-// function nextDay(){
-//     let nextTempFound = weatherData.list[8].main.temp;
-//     document.getElementById("nextDayT").textContent = "Temp: "+ nextTempFound + " Fahrenheit";
-    
-//     let windFound = weatherData.list[8].wind.speed
-//     wind.textContent = "Wind Speed: " + windFound + " MPH";
-    
-//     let humFound = weatherData.list[8].main.humidity
-//     humidity.textContent =  "Humidity: " +humFound + " %";
-    
-//     let iconEl = weatherData.list[8].weather.icon;
-//     icon.value = iconEl
-// }
 
