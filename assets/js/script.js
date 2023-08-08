@@ -65,9 +65,25 @@ function createBtn(){
     newCityBtn.textContent = cityInputEl.value.trim();
     newCityBtn.addEventListener("click", function (event){
         event.target
-    JSON.parse(localStorage.getItem("weather"))
+        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
+    .then(response => response.json())
+    .then(citiesFound =>{
+        let firstCity = citiesFound[0];
+        console.log(citiesFound)
+            console.log(firstCity)
+            console.log(firstCity.lat)
+            console.log(firstCity.lon)
+            
+            let latLonQuery =  `https://api.openweathermap.org/data/2.5/forecast?lat=${firstCity.lat}&lon=${firstCity.lon}&cnt=6&appid=`+apiKey+"&units=imperial";
+    
+            return fetch(latLonQuery)
+            //  units=imperial for weather in Fahrenheit
+            // according to documentation - cnt is supposed to be for day but is showing every 3 hours in console
+        })
+        
+        
     })
 }
 })
 
-createBtn();
+
