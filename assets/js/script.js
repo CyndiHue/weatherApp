@@ -65,6 +65,7 @@ function createBtn(){
     newCityBtn.textContent = cityInputEl.value.trim();
     newCityBtn.addEventListener("click", function (event){
         event.target
+    JSON.parse(localStorage.getItem("weather"))
     })
 }
 })
