@@ -8,6 +8,9 @@ let icon = document.getElementById("icon");
 let cityInputEl = document.getElementById("cityInput");
 
 let form = document.getElementById("city-form");
+let currentDate =dayjs().format('MMM DD, YYYY');
+let currentDateEl = document.getElementById("currentDay")
+// currentDateEl.textContent = "Date: " +currentDate;
 
 
 form.addEventListener("submit", function (event){
