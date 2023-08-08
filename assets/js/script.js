@@ -81,7 +81,29 @@ function createBtn(){
             // according to documentation - cnt is supposed to be for day but is showing every 3 hours in console
         })
         
-        
+        .then(response => response.json())
+        .then(weatherData =>{
+            console.log(weatherData)
+
+            let tempFound = weatherData.list[0].main.temp;
+            temp.textContent = "Temperature: "+ tempFound + " Fahrenheit";
+            
+            let windFound = weatherData.list[0].wind.speed
+            wind.textContent = "Wind Speed: " + windFound + " MPH";
+            
+            let humFound = weatherData.list[0].main.humidity
+            humidity.textContent =  "Humidity: " +humFound + " %";
+            
+            let iconEl = weatherData.list[0].weather.icon;
+            icon.value = iconEl
+            
+    if (city === '') {    
+        return;
+    }    
+
+    localStorage.setItem("Weather", JSON.stringify(weatherData));
+
+})    
     })
 }
 })
