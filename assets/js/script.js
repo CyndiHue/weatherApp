@@ -4,6 +4,7 @@ let temp = document.getElementById("temperature");
 let wind = document.getElementById("wind-speed");
 let humidity = document.getElementById("humidity");
 let icon = document.getElementById("icon");
+let city = document.getElementById("city");
 
 let cityInputEl = document.getElementById("cityInput");
 
@@ -17,7 +18,7 @@ form.addEventListener("submit", function (event){
     event.preventDefault();
     let city = cityInputEl.value.trim();
     
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
     .then(response => response.json())
     .then(citiesFound =>{
         let firstCity = citiesFound[0];
@@ -25,18 +26,24 @@ form.addEventListener("submit", function (event){
             console.log(firstCity)
             console.log(firstCity.lat)
             console.log(firstCity.lon)
+            console.log(firstCity.name)
+            
             
             let latLonQuery =  `https://api.openweathermap.org/data/2.5/forecast?lat=${firstCity.lat}&lon=${firstCity.lon}&cnt=6&appid=`+apiKey+"&units=imperial";
-    
+            
             return fetch(latLonQuery)
             //  units=imperial for weather in Fahrenheit
             // according to documentation - cnt is supposed to be for day but is showing every 3 hours in console
         })
-    
+        
         .then(response => response.json())
         .then(weatherData =>{
             console.log(weatherData)
 
+           let cityFound = weatherData.city.name
+           city.textContent= "City: " +cityFound;
+            console.log (weatherData.city.name )
+            
             let tempFound = weatherData.list[0].main.temp;
             temp.textContent = "Temperature: "+ tempFound + " Fahrenheit";
             
@@ -65,7 +72,7 @@ function createBtn(){
     newCityBtn.textContent = cityInputEl.value.trim();
     newCityBtn.addEventListener("click", function (event){
         event.target
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
     .then(response => response.json())
     .then(citiesFound =>{
         let firstCity = citiesFound[0];
