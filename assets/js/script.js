@@ -55,8 +55,8 @@ function runDailyWeather(city){
         const cardHumid = document.createElement('p')
 
         card.setAttribute('class', 'col-12 col-md-8')
-        cardBody.setAttribute('class', 'card-body')
         cardIcon.setAttribute('src', 'https://openweathermap.org/img/wn/'+weatherData.weather[0].icon+'@2x.png')
+        cardBody.setAttribute('class', 'card-body')
         cardTitle.setAttribute('class', 'card-header  bg-info-subtle')
         cardTemp.setAttribute('class', 'card-text')
         cardWind.setAttribute('class', 'card-text')
@@ -64,7 +64,6 @@ function runDailyWeather(city){
 
         cardTitle.textContent = weatherData.name
         cardTemp.textContent = "Temperature: "+weatherData.main.temp
-        // cardIcon.textContent = "Icon: "+weatherData.weather[0].description
         cardWind.textContent = "Wind: "+weatherData.wind.speed
         cardHumid.textContent = "Humidity: "+weatherData.main.humidity
 
@@ -72,7 +71,7 @@ function runDailyWeather(city){
         card.append(cardBody)
         document.getElementById('currentWeather').append(card)
 
-        localStorage.setItem("Weather", JSON.stringify(weatherData));
+        localStorage.setItem("currentWeather", JSON.stringify(weatherData));
         })
 }
 
@@ -83,7 +82,7 @@ function runForecast(city){
     .then(res=> res.json())
     .then(weatherData =>{
                     console.log(weatherData)
-                    var forecastArr = [weatherData.list[4], weatherData.list[12], weatherData.list[20], weatherData.list[28], weatherData.list[36]]
+                    var forecastArr = [weatherData.list[7], weatherData.list[15], weatherData.list[23], weatherData.list[31], weatherData.list[39]]
 
                     for (let index = 0; index < forecastArr.length; index++) {
                         const card = document.createElement('div')
@@ -104,9 +103,9 @@ function runForecast(city){
                         cardHumid.setAttribute('class', 'card-text')
                         
                         cardTitle.textContent = forecastArr[index].dt_txt
-                        cardTemp.textContent = forecastArr[index].main.temp
-                        cardWind.textContent = forecastArr[index].wind.speed
-                        cardHumid.textContent = forecastArr[index].main.humidity
+                        cardTemp.textContent = "Temperature: "+forecastArr[index].main.temp
+                        cardWind.textContent = "Wind: "+forecastArr[index].wind.speed
+                        cardHumid.textContent = "Humidity: "+forecastArr[index].main.humidity
                         // cardIcon.textContent = forecastArr[index].main.humidity
 
                         cardBody.append(cardTitle, cardTemp, cardWind, cardHumid, cardIcon)
