@@ -10,7 +10,6 @@ currentDateEl.textContent = currentDate;
 
 form.addEventListener('submit', handleFormSubmit)
 
-
 function handleFormSubmit(event){
     
     event.preventDefault();
@@ -19,6 +18,7 @@ function handleFormSubmit(event){
     document.getElementById('forecastWeather').innerHTML = '';
 
     let city = cityInputEl.value.trim()
+
     runDailyWeather(city)
     runForecast(city)
     createBtn(city)
@@ -29,32 +29,35 @@ function createBtn(){
     let newCityBtn = document.createElement("button");
     storedCities.append(newCityBtn)
     newCityBtn.textContent = cityInputEl.value.trim();
-    newCityBtn.addEventListener("click", function (event){event.target})
-    
+    newCityBtn.addEventListener("click", function (event){
+        event.target.textContent
+        console.log(event.target.textContent)
+        handleFormSubmit(event)
+
+    })
 }
 
 function runDailyWeather(city){
     let url =  `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=`+apiKey+"&units=imperial";
     
-    
     fetch(url)
     .then(res=> res.json())
     .then(weatherData =>{
         console.log(weatherData)
-        console.log(weatherData.weather[0].icon)
+        // console.log(weatherData.weather[0].icon)
 
         const card = document.createElement('div')
         const cardTitle = document.createElement('h2')
         const cardBody = document.createElement('div')
-        const cardIcon = document.createElement('p')
+        const cardIcon = document.createElement('img')
         const cardTemp = document.createElement('p')
         const cardWind = document.createElement('p')
         const cardHumid = document.createElement('p')
 
         card.setAttribute('class', 'col-12 col-md-8')
         cardBody.setAttribute('class', 'card-body')
+        cardIcon.setAttribute('src', 'https://openweathermap.org/img/wn/'+weatherData.weather[0].icon+'@2x.png')
         cardTitle.setAttribute('class', 'card-header  bg-info-subtle')
-        // cardIcon.setAttribute('class', 'card-text')
         cardTemp.setAttribute('class', 'card-text')
         cardWind.setAttribute('class', 'card-text')
         cardHumid.setAttribute('class', 'card-text')
@@ -86,6 +89,7 @@ function runForecast(city){
                         const card = document.createElement('div')
                        const cardBody = document.createElement('div')
                        const cardTitle = document.createElement('h5')
+                       const cardIcon = document.createElement('img')
                        const cardTemp = document.createElement('p')
                        const cardWind = document.createElement('p')
                        const cardHumid = document.createElement('p')
@@ -93,6 +97,7 @@ function runForecast(city){
                        card.setAttribute('style', 'width:18rem;')
                        card.setAttribute('class', 'card')
                         cardBody.setAttribute('class', 'card-body')
+                        cardIcon.setAttribute('src', 'https://openweathermap.org/img/wn/'+forecastArr[index].weather[0].icon+'@2x.png')
                         cardTitle.setAttribute('class', 'card-header  bg-info-subtle')
                         cardTemp.setAttribute('class', 'card-text')
                         cardWind.setAttribute('class', 'card-text')
@@ -104,7 +109,7 @@ function runForecast(city){
                         cardHumid.textContent = forecastArr[index].main.humidity
                         // cardIcon.textContent = forecastArr[index].main.humidity
 
-                        cardBody.append(cardTitle, cardTemp, cardWind, cardHumid)
+                        cardBody.append(cardTitle, cardTemp, cardWind, cardHumid, cardIcon)
                         card.append(cardBody)
                         document.getElementById('forecastWeather').append(card)
                     }
