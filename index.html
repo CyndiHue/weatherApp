@@ -14,6 +14,7 @@
     <nav class="navbar bg-body-tertiary bg-info-subtle">
       <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+        <h2 id="currentDay"></h2>
       </div>
     </nav>
   </header>
@@ -46,66 +47,12 @@
     </main>
     <main class="col-md-10">
       <div class="card" id="currentWeather">
-        <!-- <div class="col-12 col-md-8">
-          <h2 class="card-header  bg-info-subtle">Current Search: <span id="city-searched"></span></h2>
-          <div id="weather-container" class="weather-container"></div>
-          <h5 class="card-title" id="currentDate">Date</h5>
-          <img id="icon" alt="icon"></i>
-          <p id="city">City:</p>
-          <p id="temperature">Temp:</p>
-          <p id="wind-speed">Wind:</p>
-          <p id="humidity">Humidity:</p>
-        </div> -->
+          <!-- <h2 class="card-header  bg-info-subtle">Current Search: <span id="city-searched"></span></h2> -->
       </div>
-
-      <div class="row" id="card-container">
-        <!-- <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title" id="cardOneDate">Date</h5>
-            <i></i>
-            <p class="card-text" id="cardOneTemp">Temp:</p>
-            <p class="card-text">Wind:</p>
-            <p class="card-text">Humidity:</p>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Date</h5>
-            <i></i>
-            <p class="card-text">Temp:</p>
-            <p class="card-text">Wind:</p>
-            <p class="card-text">Humidity:</p>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Date</h5>
-            <i></i>
-            <p class="card-text">Temp:</p>
-            <p class="card-text">Wind:</p>
-            <p class="card-text">Humidity:</p>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Date</h5>
-            <i></i>
-            <p class="card-text">Temp:</p>
-            <p class="card-text">Wind:</p>
-            <p class="card-text">Humidity:</p>
-          </div>
-        </div>
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Date</h5>
-            <i></i>
-            <p class="card-text">Temp:</p>
-            <p class="card-text">Wind:</p>
-            <p class="card-text">Humidity:</p>
-          </div>
-        </div> -->
-      </div>
+      <div class="row" id="card-container"></div>
     </main>
+        </div>
+  
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
