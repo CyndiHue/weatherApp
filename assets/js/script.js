@@ -21,10 +21,12 @@ function handleFormSubmit(event){
     let city = cityInputEl.value.trim()
     runDailyWeather(city)
     runForecast(city)
+    createBtn(city)
    
 }
-let newCityBtn = document.createElement("button");
+
 function createBtn(){
+    let newCityBtn = document.createElement("button");
     storedCities.append(newCityBtn)
     newCityBtn.textContent = cityInputEl.value.trim();
     newCityBtn.addEventListener("click", function (event){event.target})
@@ -39,43 +41,35 @@ function runDailyWeather(city){
     .then(res=> res.json())
     .then(weatherData =>{
         console.log(weatherData)
-        console.log(weatherData.name)
-        console.log(weatherData.main.temp)
-        console.log(weatherData.wind.speed)
         console.log(weatherData.weather[0].icon)
-        console.log(weatherData.main.humidity)
-        
-        // const container = document.createElement('div')
+
         const card = document.createElement('div')
         const cardTitle = document.createElement('h2')
         const cardBody = document.createElement('div')
-        const cardCity = document.createElement('p')
+        const cardIcon = document.createElement('p')
         const cardTemp = document.createElement('p')
         const cardWind = document.createElement('p')
         const cardHumid = document.createElement('p')
 
-        // container.setAttribute('class', "card")
-        // card.setAttribute('style', 'width:18rem;')
         card.setAttribute('class', 'col-12 col-md-8')
         cardBody.setAttribute('class', 'card-body')
         cardTitle.setAttribute('class', 'card-header  bg-info-subtle')
+        // cardIcon.setAttribute('class', 'card-text')
         cardTemp.setAttribute('class', 'card-text')
         cardWind.setAttribute('class', 'card-text')
         cardHumid.setAttribute('class', 'card-text')
 
         cardTitle.textContent = weatherData.name
-        cardTemp.textContent = weatherData.main.temp
-        cardWind.textContent = weatherData.wind.speed
-        cardHumid.textContent = weatherData.main.humidity
+        cardTemp.textContent = "Temperature: "+weatherData.main.temp
+        // cardIcon.textContent = "Icon: "+weatherData.weather[0].description
+        cardWind.textContent = "Wind: "+weatherData.wind.speed
+        cardHumid.textContent = "Humidity: "+weatherData.main.humidity
 
-        cardBody.append(cardTitle, cardTemp, cardWind, cardHumid)
+        cardBody.append(cardTitle, cardTemp, cardWind, cardHumid, cardIcon)
         card.append(cardBody)
         document.getElementById('currentWeather').append(card)
-// localStorage.setItem("Weather", JSON.stringify(weatherData));
-createBtn(city)
-        
-      
-        
+
+        localStorage.setItem("Weather", JSON.stringify(weatherData));
         })
 }
 
@@ -116,10 +110,7 @@ function runForecast(city){
                     }
                     
         
-                    // localStorage.setItem("Weather", JSON.stringify(weatherData));
-            // createBtn(city)
-            
-            
+                    localStorage.setItem("Weather", JSON.stringify(weatherData));
         
         })
 }
