@@ -22,7 +22,7 @@ function handleFormSubmit(event){
     runDailyWeather(city)
     runForecast(city)
     createBtn(city)
-   
+   cityInputEl.value = ""
 }
 
 function createBtn(){
@@ -32,7 +32,6 @@ function createBtn(){
     newCityBtn.addEventListener("click", function (event){
         event.target.textContent
         console.log(event.target.textContent)
-        handleFormSubmit(event)
 
     })
 }
