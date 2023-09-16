@@ -13,38 +13,14 @@ let currentDate =dayjs().format('MMM DD, YYYY');
 let currentDateEl = document.getElementById("currentDay")
 // currentDateEl.textContent = "Date: " +currentDate;
 
-// function latlonFetch(){
-//     event.preventDefault();
-//     let city = cityInputEl.value.trim();
-    
-//     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
-//     .then(response => response.json())
-//     .then(citiesFound =>{
-//         let firstCity = citiesFound[0];
-//         console.log(citiesFound)
-//             console.log(firstCity)
-//             console.log(firstCity.lat)
-//             console.log(firstCity.lon)
-//             console.log(firstCity.name)
-            
-//             runForecast(citiesFound)
-
-            
-            
-        
-//             //  units=imperial for weather in Fahrenheit
-//             // according to documentation - cnt is supposed to be for day but is showing every 3 hours in console
-//         })
-// }
-
 function handleFormSubmit(event){
 
     event.preventDefault();
     
     let city = cityInputEl.value.trim()
 
-    runForecast(city)
     runDailyWeather(city)
+    runForecast(city)
 }
 
 
@@ -68,7 +44,7 @@ function runForecast(city){
                        card.setAttribute('style', 'width:18rem;')
                        card.setAttribute('class', 'card')
                         cardBody.setAttribute('class', 'card-body')
-                        cardTitle.setAttribute('class', 'card-title')
+                        cardTitle.setAttribute('class', 'card-header  bg-info-subtle')
                         cardTemp.setAttribute('class', 'card-text')
                         cardWind.setAttribute('class', 'card-text')
                         cardHumid.setAttribute('class', 'card-text')
@@ -83,29 +59,7 @@ function runForecast(city){
                         card.append(cardBody)
                         document.getElementById('card-container').append(card)
                     }
-                    // var cardOneDate =  document.getElementById('cardOneDate').textContent = weatherData.list[4].dt_txt;
-                  
-                    // var cardOneTemp = document.getElementById('cardOneTemp')
-        
-            //        let cityFound = weatherData.city.name
-            //        city.textContent= "City: " +cityFound;
-            //         console.log (weatherData.city.name )
-                    
-            //         let tempFound = weatherData.list[0].main.temp;
-            //         temp.textContent = "Temperature: "+ tempFound + " Fahrenheit";
-                    
-            //         let windFound = weatherData.list[0].wind.speed
-            //         wind.textContent = "Wind Speed: " + windFound + " MPH";
-                    
-            //         let humFound = weatherData.list[0].main.humidity
-            //         humidity.textContent =  "Humidity: " +humFound + " %";
-                    
-            //         let iconEl = weatherData.list[0].weather.icon;
-            //         icon.value = iconEl
-                    
-            // if (city === '') {    
-            //     return;
-            // }    
+
         
             // localStorage.setItem("Weather", JSON.stringify(weatherData));
             // createBtn(city)
@@ -128,26 +82,31 @@ function runDailyWeather(city){
                     console.log(weatherData.weather[0].icon)
                     console.log(weatherData.main.humidity)
         
-            //        let cityFound = weatherData.city.name
-            //        city.textContent= "City: " +cityFound;
-            //         console.log (weatherData.city.name )
-                    
-            //         let tempFound = weatherData.list[0].main.temp;
-            //         temp.textContent = "Temperature: "+ tempFound + " Fahrenheit";
-                    
-            //         let windFound = weatherData.list[0].wind.speed
-            //         wind.textContent = "Wind Speed: " + windFound + " MPH";
-                    
-            //         let humFound = weatherData.list[0].main.humidity
-            //         humidity.textContent =  "Humidity: " +humFound + " %";
-                    
-            //         let iconEl = weatherData.list[0].weather.icon;
-            //         icon.value = iconEl
-                    
-            // if (city === '') {    
-            //     return;
-            // }    
-        
+       
+                    const card = document.createElement('div')
+                    const cardTitle = document.createElement('h2')
+                    const cardBody = document.createElement('div')
+                    const cardCity = document.createElement('p')
+                    const cardTemp = document.createElement('p')
+                    const cardWind = document.createElement('p')
+                    const cardHumid = document.createElement('p')
+
+                    card.setAttribute('style', 'width:18rem;')
+                    card.setAttribute('class', 'col-12 col-md-8')
+                     cardBody.setAttribute('class', 'card-body')
+                     cardTitle.setAttribute('class', 'card-header  bg-info-subtle')
+                     cardTemp.setAttribute('class', 'card-text')
+                     cardWind.setAttribute('class', 'card-text')
+                     cardHumid.setAttribute('class', 'card-text')
+
+                     cardTitle.textContent = weatherData.name
+                     cardTemp.textContent = weatherData.main.temp
+                     cardWind.textContent = weatherData.wind.speed
+                     cardHumid.textContent = weatherData.main.humidity
+
+                     cardBody.append(cardTitle, cardTemp, cardWind, cardHumid)
+                        card.append(cardBody)
+                        document.getElementById('currentWeather').append(card)
             // localStorage.setItem("Weather", JSON.stringify(weatherData));
             // createBtn(city)
         
