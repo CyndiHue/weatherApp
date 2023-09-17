@@ -7,6 +7,7 @@ let currentDate =dayjs().format('MMM DD, YYYY');
 let currentDateEl = document.getElementById("currentDay")
 currentDateEl.textContent = currentDate;
 
+
 form.addEventListener('submit', function(event) {
     event.preventDefault(); 
     const city = cityInputEl.value.trim();
@@ -36,6 +37,7 @@ function createBtn() {
     if (!existingButton) {
         let newCityBtn = document.createElement("button");
         newCityBtn.textContent = cityName;
+        newCityBtn.setAttribute('class','btn btn-outline-secondary')
         storedCities.append(newCityBtn);
 
         const storedCitiesArray = JSON.parse(localStorage.getItem('storedCities')) || [];
@@ -136,3 +138,12 @@ window.addEventListener('load', function () {
             handleFormSubmit(event);
             cityInputEl.value = "";
 });});});
+
+let clearSearch = document.getElementById("clearSearches");
+
+clearSearch.addEventListener('click', function(event){
+    event.target
+    console.log(event.target)
+    localStorage.clear();
+    location.reload();
+})
