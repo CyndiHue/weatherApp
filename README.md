@@ -3,6 +3,8 @@
 
 ## Description
 
+Demo here: https://cyndihue.github.io/weatherApp/
+
 in the works in a weather forecast that that uses third party api from https://openweathermap.org/ to generate searched city weather. there are some bugs at this time.
 
 ## Usage
